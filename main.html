@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Main</title><style type="text/css">html,head,body { padding:0; margin:0; }body { font-family: helvetica, arial, sans-serif; }</style></head><body><script type="text/javascript" src="elm-runtime.js"></script><script type="text/javascript">
+try{
+
+if (Elm.Main) throw new Error("Module name collision, 'Main' is already defined."); 
+Elm.Main=function(){
+ var $op={};
+ for(Elm['i'] in Elm){eval('var '+Elm['i']+'=Elm[Elm.i];');}
+ try{
+  if (!(Elm.Prelude instanceof Object)) throw new Error('module not found');
+ } catch(e) {
+  throw new Error("Module 'Prelude' is missing. Compile with --make flag or load missing module in a separate JavaScript file.");
+ }
+ var hiddenVars={};
+ for (Elm['i'] in Elm.Prelude) {
+  if (hiddenVars[Elm['i']]) continue;
+  eval('var ' + Elm['i'] + ' = Elm.Prelude[Elm.i];');}
+ try{
+  if (!(Elm.Input instanceof Object)) throw new Error('module not found');
+ } catch(e) {
+  throw new Error("Module 'Input' is missing. Compile with --make flag or load missing module in a separate JavaScript file.");
+ }
+ var hiddenVars={};
+ for (Elm['i'] in Elm.Input) {
+  if (hiddenVars[Elm['i']]) continue;
+  eval('var ' + Elm['i'] + ' = Elm.Input[Elm.i];');}
+ try{
+  if (!(Elm.Graphics instanceof Object)) throw new Error('module not found');
+ } catch(e) {
+  throw new Error("Module 'Graphics' is missing. Compile with --make flag or load missing module in a separate JavaScript file.");
+ }
+ var hiddenVars={};
+ for (Elm['i'] in Elm.Graphics) {
+  if (hiddenVars[Elm['i']]) continue;
+  eval('var ' + Elm['i'] + ' = Elm.Graphics[Elm.i];');}
+ try{
+  if (!(Elm.Signal instanceof Object)) throw new Error('module not found');
+ } catch(e) {
+  throw new Error("Module 'Signal' is missing. Compile with --make flag or load missing module in a separate JavaScript file.");
+ }
+ var hiddenVars={};
+ for (Elm['i'] in Elm.Signal) {
+  if (hiddenVars[Elm['i']]) continue;
+  eval('var ' + Elm['i'] + ' = Elm.Signal[Elm.i];');}
+ try{
+  if (!(Elm.Time instanceof Object)) throw new Error('module not found');
+ } catch(e) {
+  throw new Error("Module 'Time' is missing. Compile with --make flag or load missing module in a separate JavaScript file.");
+ }
+ var hiddenVars={};
+ for (Elm['i'] in Elm.Time) {
+  if (hiddenVars[Elm['i']]) continue;
+  eval('var ' + Elm['i'] + ' = Elm.Time[Elm.i];');}
+ function switchEvery_17(a_31){
+  return function(b_32){
+   return function(c_33){
+    return function(t_34){
+     return function(){
+      var ta_35=every((3*t_34));
+      var tb_36=delay(t_34)(ta_35);
+      var tc_37=delay(t_34)(tb_36);
+      return merges(['Cons',sampleOn(ta_35)(a_31),['Cons',sampleOn(tb_36)(b_32),['Cons',sampleOn(tc_37)(c_33),['Nil']]]]);}();};};};}
+ function maybeString_18(s_38){
+  return function(d_39){
+   return (eq(s_38,Value.str(''))?d_39:s_38);};}
+ var _0_6=textField(Value.str('First Image URL'));
+ var firstImageField_1=function(){
+ switch(_0_6[0]){
+  case 'Tuple2':
+  return _0_6[1];
+ }
+ throw new Error("Non-exhaustive pattern match in case expression (Line 6, Column 29)");}();
+ var input1_2=function(){
+ switch(_0_6[0]){
+  case 'Tuple2':
+  return _0_6[2];
+ }
+ throw new Error("Non-exhaustive pattern match in case expression (Line 6, Column 29)");}();
+ var _0_6=textField(Value.str('Second Image URL'));
+ var secondImageField_4=function(){
+ switch(_0_6[0]){
+  case 'Tuple2':
+  return _0_6[1];
+ }
+ throw new Error("Non-exhaustive pattern match in case expression (Line 7, Column 30)");}();
+ var input2_5=function(){
+ switch(_0_6[0]){
+  case 'Tuple2':
+  return _0_6[2];
+ }
+ throw new Error("Non-exhaustive pattern match in case expression (Line 7, Column 30)");}();
+ var _0_6=textField(Value.str('Third Image URL'));
+ var thirdImageField_7=function(){
+ switch(_0_6[0]){
+  case 'Tuple2':
+  return _0_6[1];
+ }
+ throw new Error("Non-exhaustive pattern match in case expression (Line 8, Column 29)");}();
+ var input3_8=function(){
+ switch(_0_6[0]){
+  case 'Tuple2':
+  return _0_6[2];
+ }
+ throw new Error("Non-exhaustive pattern match in case expression (Line 8, Column 29)");}();
+ var imageFieldsSignal_10=constant(flow(down)(['Cons',firstImageField_1,['Cons',secondImageField_4,['Cons',thirdImageField_7,['Nil']]]]));
+ var maybeString1_11=lift2(maybeString_18)(input1_2)(constant(Value.str('http://www.adogabouttown.com/wp-content/uploads/2008/08/american-crow.jpg')));
+ var maybeString2_12=lift2(maybeString_18)(input2_5)(constant(Value.str('http://brender.github.com/crows/crow1.jpg')));
+ var maybeString3_13=lift2(maybeString_18)(input3_8)(constant(Value.str('http://www.britannica.com/blogs/wp-content/uploads/2009/07/crow1.jpg')));
+ var slideshow_14=images(switchEvery_17(maybeString1_11)(maybeString2_12)(maybeString3_13)((second/4)));
+ var slideshowContainer_15=lift4(container)(lift(widthOf)(slideshow_14))(Window.height)(constant(middle))(slideshow_14);
+ var sidebar_16=lift4(container)(constant(widthOf(firstImageField_1)))(Window.height)(constant(midLeft))(imageFieldsSignal_10);
+ var main_9=lift2(beside)(sidebar_16)(slideshowContainer_15);
+ return {$op : {},
+ _0:_0_6,
+ firstImageField:firstImageField_1,
+ input1:input1_2,
+ _0:_0_6,
+ secondImageField:secondImageField_4,
+ input2:input2_5,
+ _0:_0_6,
+ thirdImageField:thirdImageField_7,
+ input3:input3_8,
+ main:main_9,
+ imageFieldsSignal:imageFieldsSignal_10,
+ maybeString1:maybeString1_11,
+ maybeString2:maybeString2_12,
+ maybeString3:maybeString3_13,
+ slideshow:slideshow_14,
+ slideshowContainer:slideshowContainer_15,
+ sidebar:sidebar_16,
+ switchEvery:switchEvery_17,
+ maybeString:maybeString_18};}();
+Elm.main=function(){
+ return Elm.Main.main;};
+} catch (e) {
+Elm.main=function() {
+var msg = ('<br/><h2>Your browser may not be supported. Are you using a modern browser?</h2>' + '<br/><span style="color:grey">Runtime Error in Main module:<br/>' + e + '<br/><br/>The problem may stem from an improper usage of:<br/>beside, images</span>');
+document.body.innerHTML = Elm.Text.monospace(msg);throw e;};}</script><div id="widthChecker" style="width:100%; height:1px; position:absolute; top:-1px;"></div><div id="content"></div><script type="text/javascript">Dispatcher.initialize()</script><noscript><p>First Image URL</p><p>Second Image URL</p><p>Third Image URL</p><p>http://www.adogabouttown.com/wp-content/uploads/2008/08/american-crow.jpg</p><p>http://brender.github.com/crows/crow1.jpg</p><p>http://www.britannica.com/blogs/wp-content/uploads/2009/07/crow1.jpg</p></noscript></body></html>
